@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Painel do Administrador</h2>
+<h3>Cadastros Pendentes</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Nome do Pai</th>
+            <th>Nome da Mãe</th>
+            <th>Data de Nascimento</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in pending_registrations %}
+        <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.email }}</td>
+            <td>{{ person.father_name }}</td>
+            <td>{{ person.mother_name }}</td>
+            <td>{{ person.birth_date }}</td>
+            <td>
+                <a href="{{ url_for('admin_routes.approve_registration', person_id=person.id) }}" class="btn btn-success">Aprovar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

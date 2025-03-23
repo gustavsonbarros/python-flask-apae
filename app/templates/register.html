@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cadastro de Pessoa Autista</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.name.label }} {{ form.name(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.email.label }} {{ form.email(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.father_name.label }} {{ form.father_name(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.mother_name.label }} {{ form.mother_name(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.birth_date.label }} {{ form.birth_date(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
+{% endblock %}

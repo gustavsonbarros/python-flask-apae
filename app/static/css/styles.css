@@ -1,0 +1,179 @@
+/* Estilos para o corpo da página */
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Faz o body ocupar toda a altura da tela */
+    margin: 0; /* Remove margens padrão */
+}
+
+/* Container do carrossel */
+.carousel-container {
+    flex: 1; /* Ocupa metade da altura da tela */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    background-color: #f8f9fa; /* Cor de fundo opcional */
+}
+
+/* Estilos para o carrossel */
+#carouselExampleIndicators {
+    max-width: 2000px; /* Largura máxima do carrossel */
+    width: 200%; /* Ocupa 100% da largura do contêiner */
+}
+
+.carousel-item {
+    height: 600px; /* Altura do carrossel */
+}
+
+.carousel-item img {
+    object-fit: cover; /* Mantém a proporção da imagem */
+    height: 100%;
+    width: 100%;
+}
+
+/* Container do conteúdo */
+.content-container {
+    padding: 60px 0; /* Espaçamento interno */
+    background-color: #f8f9fa; /* Cor de fundo suave */
+    text-align: center;/* Cor de fundo opcional */
+}
+
+.content-container h1 {
+    font-size: 2.5rem; /* Tamanho do título */
+    color: #007bff; /* Cor azul para o título */
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    font-weight: bold; /* Título em negrito */
+}
+
+.content-container p {
+    font-size: 1.1rem; /* Tamanho do texto */
+    color: #333; /* Cor do texto */
+    max-width: 800px; /* Largura máxima do parágrafo */
+    margin: 0 auto; /* Centraliza o parágrafo */
+    line-height: 1.8; /* Espaçamento entre linhas */
+}
+
+/* Estilos para a seção "Sobre Nós" */
+.about-section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+
+/* Estilos para a seção "Serviços" */
+.services-section {
+    padding: 50px 0;
+}
+
+.services-section h3 {
+    margin-top: 20px;
+}
+
+/* Estilos para a seção "Depoimentos" */
+.testimonials-section {
+    padding: 50px 0;
+    background-color: #f8f9fa;
+}
+
+.blockquote {
+    font-style: italic;
+    color: #555;
+}
+
+/* Estilos para a seção "Call to Action" */
+.cta-section {
+    padding: 50px 0;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+
+.cta-section .btn {
+    margin-top: 20px;
+}
+
+/* Estilos para o rodapé */
+.footer {
+    padding: 30px 0;
+    background-color: #343a40;
+    color: white;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para os cards */
+.card {
+    margin-bottom: 20px; /* Espaçamento entre os cards */
+    border: 1px solid #ddd; /* Borda sutil */
+    border-radius: 10px; /* Cantos arredondados */
+    transition: transform 0.3s ease; /* Efeito de hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Efeito de levantar ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.card-img-top {
+    border-top-left-radius: 10px; /* Cantos arredondados na imagem */
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 20px; /* Espaçamento interno */
+}
+
+.card-title {
+    font-size: 1.25rem; /* Tamanho do título */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+}
+
+.card-text {
+    font-size: 0.9rem; /* Tamanho do texto */
+    color: #555; /* Cor do texto */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Cor do botão */
+    border: none; /* Remove a borda */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Cantos arredondados */
+    font-size: 1rem; /* Tamanho do texto */
+    transition: background-color 0.3s ease; /* Animação suave */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+/* Estilos para a seção "Sobre o Autismo" */
+.autism-section {
+    padding: 60px 0; /* Espaçamento interno */
+    background-color: #ffffff; /* Cor de fundo */
+}
+
+.autism-section h2 {
+    font-size: 2rem; /* Tamanho do título */
+    color: #007bff; /* Cor azul para o título */
+    margin-bottom: 30px; /* Espaçamento abaixo do título */
+    text-align: center; /* Centraliza o título */
+}
+
+.autism-section p {
+    font-size: 1.1rem; /* Tamanho do texto */
+    color: #333; /* Cor do texto */
+    line-height: 1.8; /* Espaçamento entre linhas */
+    margin-bottom: 20px; /* Espaçamento entre parágrafos */
+}
+
+.embed-responsive {
+    border-radius: 10px; /* Cantos arredondados no vídeo */
+    overflow: hidden; /* Garante que o vídeo respeite os cantos arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
