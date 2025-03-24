@@ -31,12 +31,12 @@ def register():
             mother_name=form.mother_name.data,
             birth_date=form.birth_date.data
         )
+        person.set_password(form.password.data)  # Define a senha usando o método set_password
         db.session.add(person)
         db.session.commit()
         flash('Cadastro realizado com sucesso! Aguarde aprovação.', 'success')
-        return redirect(url_for('main_routes.index'))
+        return redirect(url_for('auth_routes.register'))  # Redireciona para a mesma rota
     return render_template('register.html', form=form)
-
 
 @auth_routes.route('/login', methods=['GET', 'POST'])
 def login():
