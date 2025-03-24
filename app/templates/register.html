@@ -1,25 +1,177 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Cadastro de Pessoa Autista</h2>
-<form method="POST">
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<!-- Formulário de Cadastro -->
+<form method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
+
+    <!-- Campo: Nome Completo -->
     <div class="form-group">
-        {{ form.name.label }} {{ form.name(class="form-control") }}
+        {{ form.name.label }} {{ form.name(class="form-control", id="name") }}
+        <small id="nameHelp" class="form-text text-muted">Insira o nome completo.</small>
+        <div id="nameError" class="invalid-feedback"></div>
     </div>
+
+    <!-- Campo: E-mail -->
     <div class="form-group">
-        {{ form.email.label }} {{ form.email(class="form-control") }}
+        {{ form.email.label }} {{ form.email(class="form-control", id="email") }}
+        <small id="emailHelp" class="form-text text-muted">Insira um e-mail válido.</small>
+        <div id="emailError" class="invalid-feedback"></div>
     </div>
+
+    <!-- Campo: Nome do Pai -->
     <div class="form-group">
-        {{ form.father_name.label }} {{ form.father_name(class="form-control") }}
+        {{ form.father_name.label }} {{ form.father_name(class="form-control", id="father_name") }}
+        <small id="fatherNameHelp" class="form-text text-muted">Insira o nome do pai.</small>
+        <div id="fatherNameError" class="invalid-feedback"></div>
     </div>
+
+    <!-- Campo: Nome da Mãe -->
     <div class="form-group">
-        {{ form.mother_name.label }} {{ form.mother_name(class="form-control") }}
+        {{ form.mother_name.label }} {{ form.mother_name(class="form-control", id="mother_name") }}
+        <small id="motherNameHelp" class="form-text text-muted">Insira o nome da mãe.</small>
+        <div id="motherNameError" class="invalid-feedback"></div>
     </div>
+
+    <!-- Campo: Data de Nascimento -->
     <div class="form-group">
-        {{ form.birth_date.label }} {{ form.birth_date(class="form-control") }}
+        {{ form.birth_date.label }} {{ form.birth_date(class="form-control", id="birth_date") }}
+        <small id="birthDateHelp" class="form-text text-muted">Insira a data de nascimento (DD/MM/AAAA).</small>
+        <div id="birthDateError" class="invalid-feedback"></div>
     </div>
+
+    <!-- Campo: Senha -->
+    <div class="form-group">
+        {{ form.password.label }} {{ form.password(class="form-control", id="password") }}
+        <small id="passwordHelp" class="form-text text-muted">Insira uma senha segura.</small>
+        <div id="passwordError" class="invalid-feedback"></div>
+    </div>
+
+    <!-- Campo: Confirmar Senha -->
+    <div class="form-group">
+        {{ form.confirm_password.label }} {{ form.confirm_password(class="form-control", id="confirm_password") }}
+        <small id="confirmPasswordHelp" class="form-text text-muted">Confirme sua senha.</small>
+        <div id="confirmPasswordError" class="invalid-feedback"></div>
+    </div>
+
+    <!-- Campo: Upload de Foto -->
+    <div class="form-group">
+        <label for="photo">Foto do Usuário</label>
+        <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*">
+        <small id="photoHelp" class="form-text text-muted">Envie uma foto do usuário (opcional).</small>
+    </div>
+
+    <!-- Botão de Envio -->
     <div class="form-group">
         {{ form.submit(class="btn btn-primary") }}
     </div>
 </form>
+
+<!-- Scripts para Validação e Máscaras -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+    // Máscaras para Campos
+    $(document).ready(function() {
+        $('#birth_date').mask('00/00/0000'); // Máscara para data de nascimento
+    });
+
+    // Validação em Tempo Real
+    document.getElementById('name').addEventListener('input', function() {
+        const name = this.value;
+        const nameError = document.getElementById('nameError');
+        if (name.length < 3) {
+            nameError.textContent = 'O nome deve ter pelo menos 3 caracteres.';
+            this.classList.add('is-invalid');
+        } else {
+            nameError.textContent = '';
+            this.classList.remove('is-invalid');
+        }
+    });
+
+    document.getElementById('email').addEventListener('input', function() {
+        const email = this.value;
+        const emailError = document.getElementById('emailError');
+        if (!email.includes('@')) {
+            emailError.textContent = 'E-mail inválido.';
+            this.classList.add('is-invalid');
+        } else {
+            emailError.textContent = '';
+            this.classList.remove('is-invalid');
+        }
+    });
+
+    document.getElementById('father_name').addEventListener('input', function() {
+        const fatherName = this.value;
+        const fatherNameError = document.getElementById('fatherNameError');
+        if (fatherName.length < 3) {
+            fatherNameError.textContent = 'O nome do pai deve ter pelo menos 3 caracteres.';
+            this.classList.add('is-invalid');
+        } else {
+            fatherNameError.textContent = '';
+            this.classList.remove('is-invalid');
+        }
+    });
+
+    document.getElementById('mother_name').addEventListener('input', function() {
+        const motherName = this.value;
+        const motherNameError = document.getElementById('motherNameError');
+        if (motherName.length < 3) {
+            motherNameError.textContent = 'O nome da mãe deve ter pelo menos 3 caracteres.';
+            this.classList.add('is-invalid');
+        } else {
+            motherNameError.textContent = '';
+            this.classList.remove('is-invalid');
+        }
+    });
+
+    document.getElementById('birth_date').addEventListener('input', function() {
+        const birthDate = this.value;
+        const birthDateError = document.getElementById('birthDateError');
+        if (birthDate.length !== 10 || isNaN(Date.parse(birthDate.split('/').reverse().join('-')))) {
+            birthDateError.textContent = 'Data de nascimento inválida. Use o formato DD/MM/AAAA.';
+            this.classList.add('is-invalid');
+        } else {
+            birthDateError.textContent = '';
+            this.classList.remove('is-invalid');
+        }
+    });
+
+    document.getElementById('password').addEventListener('input', function() {
+        const password = this.value;
+        const passwordError = document.getElementById('passwordError');
+        if (password.length < 6) {
+            passwordError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
+            this.classList.add('is-invalid');
+        } else {
+            passwordError.textContent = '';
+            this.classList.remove('is-invalid');
+        }
+    });
+
+    document.getElementById('confirm_password').addEventListener('input', function() {
+        const confirmPassword = this.value;
+        const password = document.getElementById('password').value;
+        const confirmPasswordError = document.getElementById('confirmPasswordError');
+        if (confirmPassword !== password) {
+            confirmPasswordError.textContent = 'As senhas não coincidem.';
+            this.classList.add('is-invalid');
+        } else {
+            confirmPasswordError.textContent = '';
+            this.classList.remove('is-invalid');
+        }
+    });
+</script>
 {% endblock %}
